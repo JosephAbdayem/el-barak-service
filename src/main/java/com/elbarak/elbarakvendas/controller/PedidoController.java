@@ -37,11 +37,11 @@ public class PedidoController extends ControllerGenerico<Pedido> {
         return pedidoService;
     }
 
-    @GetMapping(value = "/teste/{id}")
+    @GetMapping(value = "/carrinho/{id}")
     public Pedido obterPorId(@PathVariable final Long id) {
-        Pedido one = pedidoRepository.findById(id).get();
-        List<CarrinhoPedido> zProdutos = carrinhoPedidoRepository.findByPedidoId(id);
-        one.setCarrinhoPedidos(new HashSet<>(zProdutos));
-        return one;
+        Pedido pedido = pedidoRepository.findById(id).get();
+        List<CarrinhoPedido> produtosDoPedido = carrinhoPedidoRepository.findByPedidoId(id);
+        pedido.setCarrinhoPedidos(new HashSet<>(produtosDoPedido));
+        return pedido;
     }
 }

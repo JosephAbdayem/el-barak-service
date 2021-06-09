@@ -58,8 +58,8 @@ ALTER TABLE elbarak.status OWNER TO postgres;
 CREATE TABLE IF NOT EXISTS elbarak.usuario (
 	id bigserial NOT NULL,
 	nome varchar(255) NOT NULL,
-	login varchar(255) NOT NULL,
-	senha varchar(50) NOT NULL,
+	login varchar(255),
+	senha varchar(50),
 	data_cadastro timestamp DEFAULT now() NOT NULL,
 	data_atualizacao timestamp,
 	ativo boolean DEFAULT true NOT NULL,
