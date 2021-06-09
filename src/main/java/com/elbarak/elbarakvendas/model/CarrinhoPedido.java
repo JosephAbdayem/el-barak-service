@@ -1,35 +1,31 @@
 package com.elbarak.elbarakvendas.model;
 
 import com.elbarak.elbarakvendas.compositekey.CarrinhoPedidoId;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
-@Entity
-class CarrinhoPedido implements Serializable {
+@Entity(name = "carrinho_pedido")
+public class CarrinhoPedido implements Serializable {
 
     @EmbeddedId
     private CarrinhoPedidoId id = new CarrinhoPedidoId();
 
     @ManyToOne
     @MapsId("pedidoId")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Pedido pedido;
 
     @ManyToOne
     @MapsId("produtoId")
     private Produto produto;
 
+    @Column(nullable = false)
     private int quantidade;
 
-    public CarrinhoPedido(
-            CarrinhoPedidoId id,
-            Pedido pedido,
-            Produto produto,
-            int quantidade
-    ) {
+    public CarrinhoPedido(CarrinhoPedidoId id, Pedido pedido, Produto produto, int quantidade) {
         this.id = id;
         this.pedido = pedido;
         this.produto = produto;
@@ -69,5 +65,21 @@ class CarrinhoPedido implements Serializable {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CarrinhoPedido that = (CarrinhoPedido) o;
+        return quantidade == that.quantidade &&
+                id.equals(that.id) &&
+                pedido.equals(that.pedido) &&
+                produto.equals(that.produto);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, pedido, produto, quantidade);
     }
 }

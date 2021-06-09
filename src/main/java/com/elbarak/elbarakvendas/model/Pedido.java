@@ -3,13 +3,8 @@ package com.elbarak.elbarakvendas.model;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import java.util.Set;
+import javax.persistence.*;
 
 @Entity
 public class Pedido extends EntidadeGenerica {
@@ -23,28 +18,24 @@ public class Pedido extends EntidadeGenerica {
     @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST })
     private Status status;
 
-    @ManyToMany
-    @JoinTable(name = "carrinho_pedido",
-            joinColumns = @JoinColumn(name = "pedido_id"),
-            inverseJoinColumns = @JoinColumn(name = "produto_id"))
-    private List<Produto> produtos;
+    @Transient
+    private Set<CarrinhoPedido> carrinhoPedidos;
 
     /* Construtores */
 
-    public Pedido(Long id, Date dataCadastro, Date dataAtualizacao, boolean ativo, Integer mesa, Usuario usuario,
-                  Status status, List<Produto> produtos) {
+    public Pedido(Long id, Date dataCadastro, Date dataAtualizacao, boolean ativo, Integer mesa, Usuario usuario, Status status, Set<CarrinhoPedido> carrinhoPedidos) {
         super(id, dataCadastro, dataAtualizacao, ativo);
         this.mesa = mesa;
         this.usuario = usuario;
         this.status = status;
-        this.produtos = produtos;
+        this.carrinhoPedidos = carrinhoPedidos;
     }
 
-    public Pedido(Integer mesa, Usuario usuario, Status status, List<Produto> produtos) {
+    public Pedido(Integer mesa, Usuario usuario, Status status, Set<CarrinhoPedido> carrinhoPedidos) {
         this.mesa = mesa;
         this.usuario = usuario;
         this.status = status;
-        this.produtos = produtos;
+        this.carrinhoPedidos = carrinhoPedidos;
     }
 
     public Pedido() {
@@ -77,15 +68,13 @@ public class Pedido extends EntidadeGenerica {
         this.status = status;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
+    public Set<CarrinhoPedido> getCarrinhoPedidos() {
+        return carrinhoPedidos;
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    public void setCarrinhoPedidos(Set<CarrinhoPedido> carrinhoPedidos) {
+        this.carrinhoPedidos = carrinhoPedidos;
     }
-
-    /* Equals e Hash */
 
     @Override
     public boolean equals(Object o) {
@@ -93,16 +82,16 @@ public class Pedido extends EntidadeGenerica {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Pedido pedido = (Pedido) o;
-        return mesa.equals(pedido.mesa) && usuario.equals(pedido.usuario)
-                && status.equals(pedido.status) && produtos.equals(pedido.produtos);
+        return mesa.equals(pedido.mesa) &&
+                usuario.equals(pedido.usuario) &&
+                status.equals(pedido.status) &&
+                carrinhoPedidos.equals(pedido.carrinhoPedidos);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), mesa, usuario, status, produtos);
+        return Objects.hash(super.hashCode(), mesa, usuario, status, carrinhoPedidos);
     }
-
-    /* To String */
 
     @Override
     public String toString() {
@@ -110,7 +99,7 @@ public class Pedido extends EntidadeGenerica {
                 "mesa=" + mesa +
                 ", usuario=" + usuario +
                 ", status=" + status +
-                ", produtos=" + produtos +
+                ", carrinhoPedidos=" + carrinhoPedidos +
                 '}';
     }
 }

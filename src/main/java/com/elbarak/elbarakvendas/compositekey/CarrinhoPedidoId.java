@@ -1,5 +1,7 @@
 package com.elbarak.elbarakvendas.compositekey;
 
+import com.elbarak.elbarakvendas.model.EntidadeGenerica;
+
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
@@ -12,14 +14,14 @@ public class CarrinhoPedidoId implements Serializable {
     private Long pedidoId;
     private Long produtoId;
 
-    public CarrinhoPedidoId() {
-
-    }
-
     public CarrinhoPedidoId(Long pedidoId, Long produtoId) {
         super();
         this.pedidoId = pedidoId;
         this.produtoId = produtoId;
+    }
+
+    public CarrinhoPedidoId() {
+
     }
 
     public static long getSerialVersionUID() {
