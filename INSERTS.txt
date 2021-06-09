@@ -1,0 +1,31 @@
+INSERT INTO elbarak.categoria (id, nome, data_cadastro, data_atualizacao, ativo) VALUES(1, 'Pratos principais', '2021-06-09 00:16:40.633', NULL, true);
+INSERT INTO elbarak.categoria (id, nome, data_cadastro, data_atualizacao, ativo) VALUES(2, 'Acompanhamentos', '2021-06-09 00:16:40.635', NULL, true);
+INSERT INTO elbarak.categoria (id, nome, data_cadastro, data_atualizacao, ativo) VALUES(3, 'Bebidas', '2021-06-09 00:16:40.636', NULL, true);
+INSERT INTO elbarak.categoria (id, nome, data_cadastro, data_atualizacao, ativo) VALUES(4, 'Sobremesas', '2021-06-09 00:16:40.637', NULL, true);
+
+
+INSERT INTO elbarak.produto (id, nome, descricao, preco, ativo, categoria_id, data_cadastro, data_atualizacao) VALUES(1, 'Kebab de Frango', 'Kebab de Frango', 22.00, true, 1, '2021-06-09 00:17:02.213', NULL);
+INSERT INTO elbarak.produto (id, nome, descricao, preco, ativo, categoria_id, data_cadastro, data_atualizacao) VALUES(2, 'Kebab de Boi', 'Kebab de Boi', 25.00, true, 1, '2021-06-09 00:17:02.216', NULL);
+INSERT INTO elbarak.produto (id, nome, descricao, preco, ativo, categoria_id, data_cadastro, data_atualizacao) VALUES(3, 'Manakish de Frango', 'Manakish de Frango', 21.50, true, 1, '2021-06-09 00:17:02.217', NULL);
+INSERT INTO elbarak.produto (id, nome, descricao, preco, ativo, categoria_id, data_cadastro, data_atualizacao) VALUES(4, 'Manakish de Peito de Peru', 'Manakish de Peito de Peru', 23.00, true, 1, '2021-06-09 00:17:02.218', NULL);
+INSERT INTO elbarak.produto (id, nome, descricao, preco, ativo, categoria_id, data_cadastro, data_atualizacao) VALUES(5, 'Batata frita', 'Batata frita', 6.00, true, 2, '2021-06-09 00:17:02.219', NULL);
+INSERT INTO elbarak.produto (id, nome, descricao, preco, ativo, categoria_id, data_cadastro, data_atualizacao) VALUES(6, 'Falafel', 'Falafel', 6.00, true, 2, '2021-06-09 00:17:02.220', NULL);
+INSERT INTO elbarak.produto (id, nome, descricao, preco, ativo, categoria_id, data_cadastro, data_atualizacao) VALUES(7, 'H20', 'H20', 6.50, true, 3, '2021-06-09 00:17:02.221', NULL);
+INSERT INTO elbarak.produto (id, nome, descricao, preco, ativo, categoria_id, data_cadastro, data_atualizacao) VALUES(8, 'Água sem gás 500ml', 'Água sem gás 500ml', 4.00, true, 3, '2021-06-09 00:17:02.222', NULL);
+INSERT INTO elbarak.produto (id, nome, descricao, preco, ativo, categoria_id, data_cadastro, data_atualizacao) VALUES(9, 'Água com gás 500ml', 'Água com gás 500ml', 4.00, true, 3, '2021-06-09 00:17:02.224', NULL);
+INSERT INTO elbarak.produto (id, nome, descricao, preco, ativo, categoria_id, data_cadastro, data_atualizacao) VALUES(10, 'Coca Cola lata 350ml', 'Coca Cola lata 350ml', 5.00, true, 3, '2021-06-09 00:17:02.225', NULL);
+INSERT INTO elbarak.produto (id, nome, descricao, preco, ativo, categoria_id, data_cadastro, data_atualizacao) VALUES(11, 'Sprite lata 350ml', 'Sprite lata 350ml', 5.00, true, 3, '2021-06-09 00:17:02.226', NULL);
+INSERT INTO elbarak.produto (id, nome, descricao, preco, ativo, categoria_id, data_cadastro, data_atualizacao) VALUES(12, 'Coca Cola 600ml', 'Coca Cola 600ml', 7.90, true, 3, '2021-06-09 00:17:02.227', NULL);
+INSERT INTO elbarak.produto (id, nome, descricao, preco, ativo, categoria_id, data_cadastro, data_atualizacao) VALUES(13, 'Ninho com amêndoas', 'Ninho com amêndoas', 7.00, true, 4, '2021-06-09 00:17:02.228', NULL);
+INSERT INTO elbarak.produto (id, nome, descricao, preco, ativo, categoria_id, data_cadastro, data_atualizacao) VALUES(14, 'Ninho com nozes', 'Ninho com nozes', 8.00, true, 4, '2021-06-09 00:17:02.229', NULL);
+INSERT INTO elbarak.produto (id, nome, descricao, preco, ativo, categoria_id, data_cadastro, data_atualizacao) VALUES(15, 'Baklawa', 'Baklawa', 7.00, true, 4, '2021-06-09 00:17:02.231', NULL);
+INSERT INTO elbarak.produto (id, nome, descricao, preco, ativo, categoria_id, data_cadastro, data_atualizacao) VALUES(16, 'Halawi', 'Halawi', 7.00, true, 4, '2021-06-09 00:17:02.234', NULL);
+
+
+INSERT INTO elbarak.status (id, nome, data_cadastro, data_atualizacao, ativo) VALUES(1, 'Aguardando Responsável', '2021-06-09 00:17:41.034', NULL, true);
+INSERT INTO elbarak.status (id, nome, data_cadastro, data_atualizacao, ativo) VALUES(2, 'Em andamento', '2021-06-09 00:17:41.036', NULL, true);
+INSERT INTO elbarak.status (id, nome, data_cadastro, data_atualizacao, ativo) VALUES(3, 'Finalizado', '2021-06-09 00:17:41.037', NULL, true);
+
+
+INSERT INTO elbarak.usuario (id, nome, login, senha, data_cadastro, data_atualizacao, ativo) VALUES(1, 'Marcia', 'Marcia', '123456', '2021-06-09 00:20:10.585', NULL, true);
+INSERT INTO elbarak.usuario (id, nome, login, senha, data_cadastro, data_atualizacao, ativo) VALUES(2, 'Rodrigo', 'Rodrigo', '123456', '2021-06-09 00:20:23.469', NULL, true);
