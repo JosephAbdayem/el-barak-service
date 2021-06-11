@@ -82,4 +82,13 @@ public class CarrinhoPedido implements Serializable {
     public int hashCode() {
         return Objects.hash(id, pedido, produto, quantidade);
     }
+
+    @Override
+    public String toString() {
+        return "CarrinhoPedido{" +
+                "id=" + id +
+                ", produto=" + produto +
+                ", quantidade=" + quantidade +
+                '}';
+    }
 }

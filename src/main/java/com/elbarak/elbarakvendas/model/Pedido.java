@@ -12,10 +12,10 @@ public class Pedido extends EntidadeGenerica {
     @Column(nullable = false)
     private Integer mesa;
 
-    @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST })
+    @ManyToOne(cascade = { CascadeType.MERGE})
     private Usuario usuario;
 
-    @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST })
+    @ManyToOne(cascade = { CascadeType.MERGE})
     private Status status;
 
     @Transient
@@ -99,7 +99,6 @@ public class Pedido extends EntidadeGenerica {
                 "mesa=" + mesa +
                 ", usuario=" + usuario +
                 ", status=" + status +
-                ", carrinhoPedidos=" + carrinhoPedidos +
                 '}';
     }
 }
