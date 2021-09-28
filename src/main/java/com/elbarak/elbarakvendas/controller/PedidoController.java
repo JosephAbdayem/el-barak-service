@@ -46,6 +46,17 @@ public class PedidoController extends ControllerGenerico<Pedido> {
         return pedidos;
     }
 
+    @GetMapping(value = "/ativo/carrinho/{ativo}")
+    public List<Pedido> obterAtivosComCarrinho(@PathVariable final boolean ativo) {
+        List<Pedido> pedidos = new ArrayList<>();
+        pedidoRepository.findByAtivo(ativo).forEach(pedido -> {
+            List<CarrinhoPedido> produtosDoPedido = carrinhoPedidoRepository.findByPedidoId(pedido.getId());
+            pedido.setCarrinhoPedidos(new HashSet<>(produtosDoPedido));
+            pedidos.add(pedido);
+        });
+        return pedidos;
+    }
+
     @GetMapping(value = "/carrinho/{id}")
     public Pedido obterPorIdComCarrinho(@PathVariable final Long id) {
         Pedido pedido = pedidoRepository.findById(id).get();
