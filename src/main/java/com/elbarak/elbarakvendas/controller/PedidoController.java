@@ -46,12 +46,21 @@ public class PedidoController extends ControllerGenerico<Pedido> {
         return pedidos;
     }
 
-    @GetMapping(value = "/ativo/carrinho/{ativo}")
-    public List<Pedido> obterAtivosComCarrinho(@PathVariable final boolean ativo) {
+    @GetMapping(value = "/nao-status/carrinho/{id}")
+    public List<Pedido> obterStatusNaoComCarrinho(@PathVariable final Long id) {
         List<Pedido> pedidos = new ArrayList<>();
-        pedidoRepository.findByAtivo(ativo).forEach(pedido -> {
-            List<CarrinhoPedido> produtosDoPedido = carrinhoPedidoRepository.findByPedidoId(pedido.getId());
-            pedido.setCarrinhoPedidos(new HashSet<>(produtosDoPedido));
+        pedidoRepository.findByStatusIdNot(id).forEach(pedido -> {
+            pedido.setCarrinhoPedidos(new HashSet<>(carrinhoPedidoRepository.findByPedidoId(pedido.getId())));
+            pedidos.add(pedido);
+        });
+        return pedidos;
+    }
+
+    @GetMapping(value = "/status/carrinho/{id}")
+    public List<Pedido> obterStatusComCarrinho(@PathVariable final Long id) {
+        List<Pedido> pedidos = new ArrayList<>();
+        pedidoRepository.findByStatusId(id).forEach(pedido -> {
+            pedido.setCarrinhoPedidos(new HashSet<>(carrinhoPedidoRepository.findByPedidoId(pedido.getId())));
             pedidos.add(pedido);
         });
         return pedidos;
@@ -67,6 +76,16 @@ public class PedidoController extends ControllerGenerico<Pedido> {
 
     @PostMapping(value = "/carrinho")
     public Pedido criarComCarrinho(@RequestBody final Pedido pedido) {
+        Pedido pedidoSalvo = pedidoRepository.save(pedido);
+        pedido.getCarrinhoPedidos().forEach(carrinhoPedido -> {
+            carrinhoPedido.setPedido(pedidoSalvo);
+            carrinhoPedidoRepository.save(carrinhoPedido);
+        });
+        return pedido;
+    }
+
+    @PutMapping(value = "/carrinho")
+    public Pedido atualizarComCarrinho(@RequestBody final Pedido pedido) {
         Pedido pedidoSalvo = pedidoRepository.save(pedido);
         pedido.getCarrinhoPedidos().forEach(carrinhoPedido -> {
             carrinhoPedido.setPedido(pedidoSalvo);
