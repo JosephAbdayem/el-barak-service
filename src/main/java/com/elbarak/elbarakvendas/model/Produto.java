@@ -19,7 +19,7 @@ public class Produto extends EntidadeGenerica {
     @Column(nullable = false)
     private Float preco;
 
-    @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST })
+    @ManyToOne(cascade = { CascadeType.MERGE})
     private Categoria categoria;
 
     /* Construtores */
